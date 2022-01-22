@@ -10,15 +10,7 @@ if(queryString != "") { //process data
     const urlParams = new URLSearchParams(queryString);
 
     urlParams.forEach(function(value, key) {
-        
-        function titleCase(str) {
-            str = str.toLowerCase().split(' ');
-            for (var i = 0; i < str.length; i++) {
-              str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
-            }
-            return str.join(' ');
-          }
-          titleCase("I'm a little tea pot");
+
         if(key=="Cart"){//Add price of cart items
             // alert(value);
 
@@ -42,12 +34,36 @@ if(queryString != "") { //process data
                 break;
             }
 
-
-
         }else{//build the shipping info
             //will replace underscore with space
             ////https://stackoverflow.com/questions/542232/in-javascript-how-can-i-perform-a-global-replace-on-string-with-a-variable-insi
             key = key.split("_").join(" ");
+
+            function titleCase(value) {
+                value = value.toLowerCase().split(' ');
+                for (var i = 0; i < value.length; i++) {
+                  value[i] = value[i].charAt(0).toUpperCase() + value[i].slice(1); 
+                  // value of zero (Kim) - K to uppercase + value of 1 (i and everything after to concatenate)
+                }
+                return value.join(' ');
+              }
+
+            if (key == "First Name"){
+                value = titleCase(value);
+            } 
+
+            if (key == "Last Name"){
+                value = titleCase(value); 
+            }
+
+            if (key == "Address"){
+                value = titleCase(value);
+            }
+
+            if (key == "City"){
+                value = titleCase(value);
+            }
+
             myData += `<p>${key}: ${value}</p>`;
 
         }
